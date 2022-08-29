@@ -1,12 +1,10 @@
 import helmet from 'helmet';
-import * as cors from 'cors';
+import cors from 'cors';
 import * as bodyParser from 'body-parser';
 
-import * as express from 'express';
-import * as compression from 'compression';
-import * as morgan from 'morgan';
-
-import * as Mongo from './infra/database';
+import express from 'express';
+import compression from 'compression';
+import morgan from 'morgan';
 
 import Routes from './routes';
 import {
@@ -14,8 +12,8 @@ import {
   MORGAN_FORMAT,
 } from './shared/constants/app.constants';
 
-class Application {
-  public express: express.Application;
+export class Application {
+  public app: express.Application;
 
   public constructor() {
     this.initialize()
@@ -27,18 +25,17 @@ class Application {
   }
 
   protected async initialize(): Promise<void> {
-    this.express = express();
-    this.express.use(cors());
-    this.express.use(helmet());
-    this.express.use(compression());
-    this.express.use(bodyParser.json({ limit: BODY_PARSER_LIMIT }));
-    this.express.use(
+    this.app = express();
+    this.app.use(cors());
+    this.app.use(helmet());
+    this.app.use(compression());
+    this.app.use(bodyParser.json({ limit: BODY_PARSER_LIMIT }));
+    this.app.use(
       bodyParser.urlencoded({ limit: BODY_PARSER_LIMIT, extended: true })
     );
-    this.express.use(morgan(MORGAN_FORMAT));
-    this.express.use(Routes);
-    await Mongo;
+    this.app.use(morgan(MORGAN_FORMAT));
+    this.app.use(Routes);
   }
 }
 
-export default new Application().express;
+export default new Application().app;

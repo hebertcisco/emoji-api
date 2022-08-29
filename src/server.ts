@@ -5,8 +5,6 @@ import { PORT } from './shared/constants/app.constants';
 
 dotenv.config();
 
-((): void => {
-  application.listen(PORT, (): boolean =>
-    process.stdout.write(`Server running at port http://localhost:${PORT}\n`)
-  );
-})();
+application.listen(PORT, (): boolean =>
+  process.stdout.write(`Server running at port http://localhost:${PORT}\n`)
+);

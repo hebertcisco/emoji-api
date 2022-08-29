@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import DefaultRouter from './domain/default.route';
-import ProductRouter from './domain/product/product.routes';
+import EmojiRouter from './domain/emoji/emoji.routes';
 
 const Routes = Router();
 
 Routes.use('/', DefaultRouter);
-Routes.use('/product', ProductRouter);
+Routes.use('/emoji', EmojiRouter);
 
 export default Routes;

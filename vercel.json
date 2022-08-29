@@ -1,5 +1,5 @@
 {
-  "name": "vercel-typescript-rest-api",
+  "name": "emoji-api",
   "version": 2,
   "public": true,
   "builds": [
